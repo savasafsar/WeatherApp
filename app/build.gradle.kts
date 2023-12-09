@@ -29,6 +29,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -66,4 +67,22 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    //Location
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
+    //convert api
+    // retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    // GSON
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    // coroutine
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    //Loading Network Image
+    implementation("io.coil-kt:coil:2.5.0")
+    //Display  Awesome Font
+    implementation ("com.github.Gurupreet:FontAwesomeCompose:1.0.0")
+    //Full layout without Status Bar
+    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.1-alpha")
+
 }
