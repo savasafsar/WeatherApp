@@ -1,6 +1,9 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
+    id ("kotlin-parcelize")
 }
 
 android {
@@ -60,6 +63,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -68,21 +72,50 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
+    //Splash Api
+    implementation ("androidx.core:core-splashscreen:1.0.1")
+
+    //Compose Navigation
+    val nav_version = "2.6.0"
+    implementation ("androidx.navigation:navigation-compose:$nav_version")
+
+    //Dagger Hilt
+    implementation ("com.google.dagger:hilt-android:2.45")
+    kapt ("com.google.dagger:hilt-compiler:2.45")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+
+    //Retrofit
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //Coil
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+    //Datastore
+    implementation ("androidx.datastore:datastore-preferences:1.0.0")
+
+    //Compose Foundation
+    implementation ("androidx.compose.foundation:foundation:1.4.3")
+
+    //Accompanist
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
+
+    //Paging 3
+    val paging_version = "3.1.1"
+    implementation ("androidx.paging:paging-runtime:$paging_version")
+    implementation ("androidx.paging:paging-compose:3.2.0-rc01")
+
+    //Room
+    val room_version = "2.5.2"
+    implementation ("androidx.room:room-runtime:$room_version")
+    kapt ("androidx.room:room-compiler:$room_version")
+    implementation ("androidx.room:room-ktx:2.5.2")
+
     //Location
     implementation ("com.google.android.gms:play-services-location:21.0.1")
-    //convert api
-    // retrofit
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    // GSON
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    // coroutine
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    //Loading Network Image
-    implementation("io.coil-kt:coil:2.5.0")
-    //Display  Awesome Font
     implementation ("com.github.Gurupreet:FontAwesomeCompose:1.0.0")
-    //Full layout without Status Bar
-    implementation("com.google.accompanist:accompanist-systemuicontroller:0.33.1-alpha")
+
+
 
 }
