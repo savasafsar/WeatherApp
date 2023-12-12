@@ -18,9 +18,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -91,11 +97,7 @@ class MainActivity : ComponentActivity() {
                 .setMaxUpdateAgeMillis(100)
                 .build()
 
-            fusedLocationProviderClient?.requestLocationUpdates(
-                locationRequest,
-                it,
-                Looper.getMainLooper()
-            )
+
         }
     }
 
@@ -118,8 +120,6 @@ class MainActivity : ComponentActivity() {
                             latestLocation.longitude
                         )
                     }
-                    //Fetch API when location change
-                    fetchWeatherInformation(mainViewModel,currentLocation)
                 }
             }
             WeatherAppTheme {
@@ -188,6 +188,14 @@ class MainActivity : ComponentActivity() {
                 }
             }
         })
+        LaunchedEffect(key1 = true, block = {
+            fetchWeatherInformation(mainViewModel,currentLocation)
+
+        })
+        LaunchedEffect(key1 = true, block = {
+            fetchWeatherInformation(mainViewModel,currentLocation)
+
+        })
         val gradient = Brush.linearGradient(
             colors = listOf(Color(colorBg1), Color(colorBg2)),
             start = Offset(1000f, -1000f),
@@ -196,10 +204,11 @@ class MainActivity : ComponentActivity() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(gradient)
+                .background(gradient),
+            contentAlignment = Alignment.BottomCenter
         ) {
             val screeenHeight = LocalConfiguration.current.screenHeightDp.dp
-            val marginTop = screeenHeight * 0.1f //Margin top by %20 height
+            val marginTop = screeenHeight * 0.05f //Margin top by %20 height
             val marginTopPx = with(LocalDensity.current) { marginTop.toPx() }
             Column(
                 modifier = Modifier
@@ -231,6 +240,16 @@ class MainActivity : ComponentActivity() {
                     }
                 }
             }
+        FloatingActionButton(onClick = {
+
+            //Fetch API when location change
+            fetchWeatherInformation(mainViewModel,currentLocation)
+        },
+      modifier =  Modifier.padding(bottom = 16.dp)
+        ) {
+            Icon(Icons.Default.Refresh,contentDescription ="Add")
+        }
+            
         }
         Log.d("deneme", "${currentLocation.lat}/${currentLocation.lng}")
 
